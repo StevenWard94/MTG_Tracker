@@ -33,6 +33,7 @@ DROP TABLE IF EXISTS `Card_Stocks`;
 CREATE TABLE `Card_Stocks` (
   `card_id` int(11) NOT NULL AUTO_INCREMENT,
   `card_name` varchar(255) NOT NULL,
+  `pull_date` datetime NOT NULL,
   `rarity` enum('common','uncommon','rare','mythic') NOT NULL,
   `market_price` decimal(7,2) DEFAULT NULL,
   `buylist_price` decimal(7,2) DEFAULT NULL,
@@ -86,7 +87,7 @@ DROP TABLE IF EXISTS `Part_Of`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Part_Of` (
   `card_name` varchar(255) NOT NULL,
-  `pull_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `pull_date` datetime NOT NULL,
   `set_id` int(11) NOT NULL,
   PRIMARY KEY (`card_name`,`pull_date`,`set_id`),
   KEY `set_id` (`set_id`),
@@ -160,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-24 17:46:44
+-- Dump completed on 2019-11-26 16:29:03
