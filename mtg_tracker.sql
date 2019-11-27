@@ -39,7 +39,9 @@ CREATE TABLE `Card_Stocks` (
   `buylist_price` decimal(7,2) DEFAULT NULL,
   `listed_median` decimal(7,2) DEFAULT NULL,
   PRIMARY KEY (`card_id`),
-  UNIQUE KEY `unique_index` (`card_name`,`rarity`)
+  UNIQUE KEY `unique_index` (`card_name`,`rarity`),
+  KEY `fk_card_stocks_pull_date` (`pull_date`),
+  CONSTRAINT `fk_card_stocks_pull_date` FOREIGN KEY (`pull_date`) REFERENCES `Part_Of` (`pull_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,6 +92,7 @@ CREATE TABLE `Part_Of` (
   `pull_date` datetime NOT NULL,
   `set_id` int(11) NOT NULL,
   PRIMARY KEY (`card_name`,`pull_date`,`set_id`),
+  UNIQUE KEY `pull_date` (`pull_date`),
   KEY `set_id` (`set_id`),
   CONSTRAINT `Part_Of_ibfk_1` FOREIGN KEY (`set_id`) REFERENCES `Sets` (`set_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -161,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-26 16:29:03
+-- Dump completed on 2019-11-26 20:21:27
